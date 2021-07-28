@@ -1,7 +1,7 @@
 {
-  "name": "rollupts",
+  "name": "rollupTsReactComponent",
   "version": "1.0.0",
-  "description": "rollup + typescript 开发模板",
+  "description": "rollup + typescript react组件开发模板",
   "main": "dist/index.js",
   "scripts": {
     "dev": "rollup -c -w",

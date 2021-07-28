@@ -1,7 +1,7 @@
 {
   "name": "rollupts",
   "version": "1.0.0",
-  "description": "rollup + typescript 开发模板",
+  "description": "rollup + typescript js库开发模板",
   "main": "dist/index.js",
   "scripts": {
     "dev": "rollup -c -w"
