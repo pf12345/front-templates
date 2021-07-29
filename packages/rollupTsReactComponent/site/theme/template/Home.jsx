@@ -1,5 +1,5 @@
 import React from 'react';
-import Test from '../../../dist/bundle'
+import Test from '../../../dist/index'
 
 export default (props) => {
   return (

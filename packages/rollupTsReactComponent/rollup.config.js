@@ -6,6 +6,7 @@ import { DEFAULT_EXTENSIONS } from '@babel/core';
 import {terser} from 'rollup-plugin-terser';
 import autoprefixer from 'autoprefixer';
 import postcss from 'rollup-plugin-postcss';
+import external from 'rollup-plugin-peer-deps-external';
 
 export default {
   input: "./src/index.ts",
@@ -15,6 +16,9 @@ export default {
     plugins: [terser()]
   },
   plugins: [
+    external({
+      includeDependencies: true,
+    }),
     postcss({
       plugins: [autoprefixer()],
       sourceMap: true,
@@ -26,27 +30,26 @@ export default {
       tsconfig: "tsconfig.json",
       tsconfigOverride: { compilerOptions: { declaration: false } }
     }),
-    nodeResolve({
-      jsnext: true,
-      main: true,
-      extensions: [...DEFAULT_EXTENSIONS, '.js', '.ts', '.tsx']
-    }),
     babel({ 
+      babelrc: false,
       extensions: [...DEFAULT_EXTENSIONS, '.js', '.ts', '.tsx'], 
       exclude: "node_modules/**", 
-      presets: ['@babel/env', '@babel/preset-react'] 
+      presets: [['@babel/preset-env', { modules: false }], '@babel/preset-react'],
     }),
     commonjs({
-      include: [
-        'node_modules/**'
-      ],
+      include: /node_modules/,
       exclude: [
         'node_modules/process-es6/**'
       ],
       namedExports: {
-        'react': ['createElement', 'Component' ],
+        'react': ['createElement', 'Component', 'useState' ],
         'react-dom': ['render']
       }
+    }),
+    nodeResolve({
+      jsnext: true,
+      main: true,
+      extensions: [...DEFAULT_EXTENSIONS, '.js', '.ts', '.tsx']
     }),
   ],
   watch: {

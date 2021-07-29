@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import add from './util';
-import style from './style.module.css'
+// import style from './style.module.css'
 
-class Test extends Component {
-  render() {
-    return (
-      <div className={style.title}>component {add(1)}</div>
-    )
-  }
+const Test = () => {
+  const [value] = useState(1)
+  return (
+    <div>1122334 {add(value)}</div>
+  )
 }
 
 export default Test;
