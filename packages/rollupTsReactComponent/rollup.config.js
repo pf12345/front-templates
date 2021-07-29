@@ -16,6 +16,7 @@ export default {
     plugins: [terser()]
   },
   plugins: [
+    // 需要使用，避免重复使用重复依赖，解决react非法hook调用问题: https://zh-hans.reactjs.org/warnings/invalid-hook-call-warning.html
     external({
       includeDependencies: true,
     }),
